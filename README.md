@@ -1,2 +1,3 @@
 # mern-food-delivery
-MERN Food Delivery
+MERN Food Delivery App
+ 
