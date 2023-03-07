@@ -1,0 +1,16 @@
+{
+  "name": "mern_food_deli_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "inded.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ratnesh Sharma",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.1",
+    "nodemon": "^2.0.21"
+  }
+}

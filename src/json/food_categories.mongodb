@@ -1,0 +1,13 @@
+// MongoDB Playground
+// Select the database to use.
+use('quickfoodmern');
+
+// Insert a few documents into the food_categories collection.
+db.food_categories.insertMany([
+    {"CategoryName": "Biryani/Rice"},
+    {"CategoryName": "Starter"},
+    {"CategoryName": "Pizza"}
+]);
+
+// Run a find command
+db.food_categories.find();
