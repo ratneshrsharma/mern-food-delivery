@@ -1,17 +1,50 @@
 const mongoose = require('mongoose');
 
+const appName = 'quickfood'
+const passcode = 'Abc123$$$'
+
 // create var to add/edit/update database URL
-const mongoURI = 'mongodb://quickfood:Abc123$$$@ac-lrltqiw-shard-00-00.fekhvtj.mongodb.net:27017,ac-lrltqiw-shard-00-01.fekhvtj.mongodb.net:27017,ac-lrltqiw-shard-00-02.fekhvtj.mongodb.net:27017/?ssl=true&replicaSet=atlas-ugxgk6-shard-0&authSource=admin&retryWrites=true&w=majority'
+const mongoURL = `mongodb+srv://${appName}:${passcode}@cluster0.fekhvtj.mongodb.net/quickfoodmern?retryWrites=true&w=majority`
 
 // create function to export and connected to express.js
+const dbConnect = async () => {
+  try {
 
+    await mongoose.connect(mongoURL).then(async () => {
+      console.log(`You've successfully connected your database.`);
 
-const mongoDB = async function () {
-  const uri = mongoURI; // Will return DB URI 
-  console.log(`Connecting to DB - uri`);
-  // console.log(`Connecting to DB - uri: ${uri}`);
-  return mongoose.connect(uri, {useNewUrlParser: true});
-};
+      // Find all data from food item collection
+      const fetchedFoodItemData = await mongoose.connection.db.collection("food_items");
+      fetchedFoodItemData.find({}).toArray().then((data) => {
+        // console.log("Data:", data);
+      }).catch((e) => {
+        console.log("Error:", e);
+      })
 
+    }).catch((e) => {
+      console.log('Error establishing a database connection: ', e)
+    });
+  }
+  catch (err) {
+    console.log('Error at dbConnect ::', err)
+  }
+}
 
-module.exports = mongoDB;
+// const mongoDB = async function () {
+//   return mongoose.connect(mongoURI, { useNewUrlParser: true }).then(async () => {
+//     console.log(`You've successfully connected your database.`);
+//     const fetch_data = await mongoose.connection.db.collections("food_items");
+//     console.log("check:", fetch_data);
+//     // fetch_data.find({}).toArray(function(err, data){
+//     //   if(err){
+//     //     console.log("err: ",err);
+//     //   } else{
+//     //     console.log(data);
+//     //   }
+//     // })
+//   }).catch((e) => {
+//     console.log('Error establishing a database connection: ', e.message)
+//   });
+// };
+
+module.exports = dbConnect;

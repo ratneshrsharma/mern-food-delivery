@@ -90,5 +90,5 @@ db.food_items.insertMany([
     }
 ]);
 
-// Run a find command
+// // Run a find command
 db.food_items.find();
