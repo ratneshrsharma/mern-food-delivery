@@ -2,9 +2,8 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Footer from './component/layout/Footer';
 import Header from './component/layout/Header';
-import Home from './pages/Home';
 import AppRouter from './utils/AppRouter';
-
+// import { RouterConfig } from './config/RouterConfig';
 
 function App() {
   return (

@@ -1,0 +1,95 @@
+// Form
+.form-control,
+input,
+input[type=text],
+input[type=tel],
+input[type=email],
+input[type=number],
+input[type=submit],
+button {
+  padding: 8px 14px;
+  margin: 0 0;
+  border: 1px solid #d6d6d6;
+  font-size: 1.4rem;
+}
+
+.btn {
+  padding: 8px 14px;
+  margin: 0 0;
+  border: 1px solid #d6d6d6;
+  font-size: 1.4rem;
+
+  &.btn-primary {
+    background-color: #666;
+  }
+}
+
+
+
+// Button
+.btn {
+  border: 1px solid $primaryColorDark;
+  border-radius: 5px;
+  padding: 8px 20px;
+  margin: auto 5px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  background-color: $primaryColor;
+  text-shadow: none;
+
+  &:active,
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
+    border: 1px solid #dadada;
+    outline: none;
+    box-shadow: none;
+  }
+
+  &.btn-primary {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+    color: $white;
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      background-color: $primaryColorDark;
+      border-color: $primaryColorDark;
+    }
+  }
+
+  &.btn-secoandary {
+    background-color: $white;
+    border-color: rgba($color: $secoandaryColor, $alpha: 0.3);
+    color: rgba($color: $secoandaryColor, $alpha: 0.75);
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      background-color: $accentColor;
+      border-color: $accentColor;
+      color: $white;
+    }
+  }
+  &.btn-link {
+    background-color: transparent;
+    border:none;
+    color: $accentColor;
+    text-decoration: none;
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      color: $primaryColor;
+    }
+  }
+}

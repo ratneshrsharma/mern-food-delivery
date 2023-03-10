@@ -2,9 +2,12 @@ const mongoose = require('mongoose');
 
 const appName = 'quickfood'
 const passcode = 'Abc123$$$'
+const dbName = 'quickfoodmern'
+
 
 // create var to add/edit/update database URL
-const mongoURL = `mongodb+srv://${appName}:${passcode}@cluster0.fekhvtj.mongodb.net/quickfoodmern?retryWrites=true&w=majority`
+// const mongoURL = `mongodb+srv://${appName}:${passcode}@cluster0.fekhvtj.mongodb.net/${dbName}?retryWrites=true&w=majority`
+const mongoURL = `mongodb://${appName}:${passcode}@ac-lrltqiw-shard-00-00.fekhvtj.mongodb.net:27017,ac-lrltqiw-shard-00-01.fekhvtj.mongodb.net:27017,ac-lrltqiw-shard-00-02.fekhvtj.mongodb.net:27017/${dbName}?ssl=true&replicaSet=atlas-ugxgk6-shard-0&authSource=admin&retryWrites=true&w=majority`
 
 // create function to export and connected to express.js
 const dbConnect = async () => {
@@ -16,7 +19,6 @@ const dbConnect = async () => {
       // Find all data from food item collection
       const fetchedFoodItemData = await mongoose.connection.db.collection("food_items");
       fetchedFoodItemData.find({}).toArray().then((data) => {
-        // console.log("Data:", data);
       }).catch((e) => {
         console.log("Error:", e);
       })
@@ -29,22 +31,5 @@ const dbConnect = async () => {
     console.log('Error at dbConnect ::', err)
   }
 }
-
-// const mongoDB = async function () {
-//   return mongoose.connect(mongoURI, { useNewUrlParser: true }).then(async () => {
-//     console.log(`You've successfully connected your database.`);
-//     const fetch_data = await mongoose.connection.db.collections("food_items");
-//     console.log("check:", fetch_data);
-//     // fetch_data.find({}).toArray(function(err, data){
-//     //   if(err){
-//     //     console.log("err: ",err);
-//     //   } else{
-//     //     console.log(data);
-//     //   }
-//     // })
-//   }).catch((e) => {
-//     console.log('Error establishing a database connection: ', e.message)
-//   });
-// };
 
 module.exports = dbConnect;

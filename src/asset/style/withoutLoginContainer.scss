@@ -1,0 +1,23 @@
+.withoutLoginContainer{
+  width: 100svw;
+  height: clamp(400px, 100svh, 800px);  
+  background-color: #c00;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  .middleFormBox{
+    width: 80%;
+    max-width: 600px;
+    position: absolute;
+    inset: 50% auto auto 50%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    h2{
+      font-size: 2.2rem;
+    }
+  }
+}
