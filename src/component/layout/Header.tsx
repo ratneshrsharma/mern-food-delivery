@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Header() {
+  const [auth, setAuth] = useState<String>('')
+  let authData: string | null = localStorage.getItem("authToken")
+  useEffect(() => {
+    if (authData) {
+      setAuth(authData)
+    } else {
+      setAuth('')
+    }
+  }, [authData])
   return (
     <>
       <header className='header'>
@@ -17,12 +26,20 @@ export default function Header() {
                   <li className="nav-item">
                     <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                   </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/login">Login</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/signup">Signup</Link>
-                  </li>
+                  {auth && <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="#logout" onClick={() => { localStorage.removeItem('authToken'); setAuth('') }}>Logout</Link>
+                    </li>
+                  </>}
+                  {auth === '' && <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/login">Login</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/signup">Signup</Link>
+                    </li>
+                  </>
+                  }
                 </ul>
               </div>
             </div>

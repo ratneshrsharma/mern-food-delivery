@@ -3,6 +3,10 @@ const router = express.Router();
 const User = require('../models/User');
 const { body, validationResult } = require('express-validator');
 
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const jwtSecret = "@QEGTUIRatneshSHarma@QEGTUIRatneshSHarma@QEGTUIRatneshSHarma"
+
 // user/add
 router.post("/user/add",
   [
@@ -19,11 +23,14 @@ router.post("/user/add",
       return res.status(400).json({ errors: errors.array() });
     }
 
+    const salt = await bcrypt.genSalt(10);
+    let secPassword = await bcrypt.hash(req.body.password, salt);
+
     try {
       await User.create({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: secPassword,
         phone: req.body.phone,
         location: req.body.location,
       })
@@ -50,16 +57,22 @@ router.post("/login",
       return res.status(400).json({ errors: errors.array() });
     }
     let email = req.body.email
+
+
     try {
-      let userData = await User.findOne({ email })
+      let userData = await User.findOne({ email });
+      let pwdCompare = await bcrypt.compare(req.body.password, userData.password);
+
       if (!userData) {
         return res.status(400).json({ msg: 'You are entering an incorrect email address.' });
       } else {
-        if (req.body.password !== userData.password) {
+        if (!pwdCompare) {
           return res.status(400).json({ msg: 'Your password is invalid. Please try again.' });
         }
         else {
-          return res.json({ success: true, msg: "Login successfully!" });
+          const data = { user: { id: userData.id } }
+          const authToken = jwt.sign(data, jwtSecret)
+          return res.json({ success: true, msg: "Login successfully!", authToken: authToken });
         }
       }
 

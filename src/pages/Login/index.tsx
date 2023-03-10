@@ -40,6 +40,7 @@ export default function Login() {
         setErrorMsg(null)
         setSuccessMsg(json?.msg)
         setUserDetails({ email: "", password: "" })
+        localStorage.setItem("authToken",json?.authToken)
         navigate('/')
       }
 
