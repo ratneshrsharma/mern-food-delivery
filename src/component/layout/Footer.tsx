@@ -1,6 +1,4 @@
-import React from 'react'
-
-export default function Footer() {
+export const Footer: React.FC<any> = () => {
   return (
     <>
       <footer className="py-3 footer">
@@ -18,3 +16,5 @@ export default function Footer() {
     </>
   )
 }
+
+export default Footer;

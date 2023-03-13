@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { CartProvider } from './component/ContextReducer';
 import Footer from './component/layout/Footer';
 import Header from './component/layout/Header';
 import AppRouter from './utils/AppRouter';
@@ -8,11 +9,13 @@ import AppRouter from './utils/AppRouter';
 function App() {
   return (
     <>
-      <BrowserRouter basename='/'>
-        <Header />
-        <AppRouter />
-        <Footer />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter basename='/'>
+          <Header />
+          <AppRouter />
+          <Footer />
+        </BrowserRouter>
+      </CartProvider>
     </>
   );
 }

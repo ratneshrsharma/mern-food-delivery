@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function Header() {
-  const [auth, setAuth] = useState<String>('')
-  let authData: string | null = localStorage.getItem("authToken")
-  useEffect(() => {
-    if (authData) {
-      setAuth(authData)
-    } else {
-      setAuth('')
-    }
-  }, [authData])
+export const Header: React.FC<any> = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = (e:any) => {
+    e.preventDefault()
+    localStorage.removeItem('authToken');
+    navigate("/login");
+  }
   return (
     <>
       <header className='header'>
@@ -22,23 +19,30 @@ export default function Header() {
                 <span className="navbar-toggler-icon"></span>
               </button>
               <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
+                <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
                     <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                   </li>
-                  {auth && <>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="#logout" onClick={() => { localStorage.removeItem('authToken'); setAuth('') }}>Logout</Link>
-                    </li>
-                  </>}
-                  {auth === '' && <>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/login">Login</Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/signup">Signup</Link>
-                    </li>
-                  </>
+                  {localStorage.getItem("authToken")
+                    ? <>
+                      <li className="nav-item">
+                        <Link className="nav-link" aria-current="page" to="/my-orders">My Orders</Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" aria-current="page" to="/my-cart">My Cart</Link>
+                      </li>
+                      <li className="nav-item">
+                        <span className="nav-link btn btn-danger text-white p-2 px-4 fs-4 mt-1" onClick={handleLogout}>Logout</span>
+                      </li>
+                    </>
+                    : <>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/login">Login</Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to="/signup">Signup</Link>
+                      </li>
+                    </>
                   }
                 </ul>
               </div>
@@ -49,3 +53,5 @@ export default function Header() {
     </>
   )
 }
+
+export default Header;
