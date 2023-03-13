@@ -2,7 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import { RouterConfig } from "../config/RouterConfig";
 import React from "react";
 
-const AppRouter = () => {
+export const AppRouter: React.FC<any> = (props) => {
+
   return (
     <Routes>
       {RouterConfig &&

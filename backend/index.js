@@ -12,6 +12,8 @@ app.use((req,res,next)=>{
 
 app.use(express.json( ));
 app.use('/api', require('./Routes/CreateUser'));
+app.use('/api', require('./Routes/FoodItems'));
+app.use('/api', require('./Routes/FoodCategories'));
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

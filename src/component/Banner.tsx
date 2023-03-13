@@ -1,4 +1,5 @@
-export default function Banner() {
+export const Banner: React.FC<any> = (props) => {
+  const { searchItems, setSearchItems } = props;
   return (
     <div id="carouselExampleFade" className="homeBanner carousel slide carousel-fade" data-bs-ride="carousel">
       <div className="carousel-inner">
@@ -7,11 +8,13 @@ export default function Banner() {
           <div className='content'>
             <p>Quickly satisfying, Fast and Delicious is the go-to spot for tasty bites on the fly. No compromise on flavor, always speedy service.</p>
           </div>
-         
-          <form className="searchForm">
-            <input className="form-control me-2" type="search" placeholder="Search for Cuisines..." aria-label="Search" />
-            <button className="btn btn-primary" type="submit">Search</button>
-          </form>
+
+          <div className="searchForm">
+            <input className="form-control me-2" type="search" placeholder="Search for Cuisines..." aria-label="Search"
+              value={searchItems} onChange={(e) => setSearchItems(e.target.value)}
+            />
+            {/* <button className="btn btn-primary" type="submit">Search</button> */}
+          </div>
         </div>
 
         <div className="carousel-item active">
@@ -35,3 +38,4 @@ export default function Banner() {
     </div>
   )
 }
+export default Banner;

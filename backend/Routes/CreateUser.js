@@ -82,4 +82,16 @@ router.post("/login",
     }
   })
 
+
+// // fooditem
+// router.post("/fooditems", (req, res) => {
+//   try {
+//     res.send([global.food_items]);
+//   } catch (error) {
+//     console.log("two")
+//     console.log("Error:", error);
+//     res.send('Server Error');
+//   }
+// })
+
 module.exports = router;

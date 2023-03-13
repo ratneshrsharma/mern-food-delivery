@@ -11,6 +11,11 @@ button {
   margin: 0 0;
   border: 1px solid #d6d6d6;
   font-size: 1.4rem;
+
+  &:hover, &:focus, &:focus-within{
+    outline: none;
+    box-shadow: none;
+  }
 }
 
 .btn {
