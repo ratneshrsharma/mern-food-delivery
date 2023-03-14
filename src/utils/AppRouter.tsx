@@ -7,7 +7,7 @@ export const AppRouter: React.FC<any> = (props) => {
   return (
     <Routes>
       {RouterConfig &&
-        RouterConfig.map(({ path, component: Component}, index) => {
+        RouterConfig.map(({ path, component: Component }, index) => {
           return (
             <Route
               key={index}

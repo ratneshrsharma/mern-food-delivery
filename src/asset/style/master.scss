@@ -18,12 +18,8 @@ body{
   background-color: $bgColor;
 }
 
-
-
-
-
+@import './Layout.scss';
 @import './Component.scss';
 @import './Form.scss';
 @import './withoutLoginContainer.scss';
-@import './Layout.scss';
 @import './ProductCard.scss';

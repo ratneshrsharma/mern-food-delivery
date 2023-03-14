@@ -1,11 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { Badge } from 'react-bootstrap';
+import { useCart } from '../ContextReducer';
 
-export const Header: React.FC<any> = () => {
+export const Header: React.FC<any> = (props) => {
   const navigate = useNavigate();
 
-  const handleLogout = (e:any) => {
+  let cartData = useCart();
+
+  const handleLogout = (e: any) => {
     e.preventDefault()
-    localStorage.removeItem('authToken');
+    localStorage.clear();
     navigate("/login");
   }
   return (
@@ -29,7 +33,7 @@ export const Header: React.FC<any> = () => {
                         <Link className="nav-link" aria-current="page" to="/my-orders">My Orders</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" aria-current="page" to="/my-cart">My Cart</Link>
+                        <Link className="nav-link" aria-current="page" to="/my-cart">My Cart <Badge bg='primary' pill>{cartData?.length ? cartData?.length : 0}</Badge></Link>
                       </li>
                       <li className="nav-item">
                         <span className="nav-link btn btn-danger text-white p-2 px-4 fs-4 mt-1" onClick={handleLogout}>Logout</span>

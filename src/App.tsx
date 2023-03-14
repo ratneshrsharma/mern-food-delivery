@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { CartProvider } from './component/ContextReducer';
 import Footer from './component/layout/Footer';
 import Header from './component/layout/Header';
 import AppRouter from './utils/AppRouter';
-// import { RouterConfig } from './config/RouterConfig';
 
 function App() {
   return (
@@ -12,7 +11,9 @@ function App() {
       <CartProvider>
         <BrowserRouter basename='/'>
           <Header />
-          <AppRouter />
+          <div className='wrapper'>
+            <AppRouter />
+          </div>
           <Footer />
         </BrowserRouter>
       </CartProvider>
