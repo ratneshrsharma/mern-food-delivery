@@ -6,12 +6,12 @@ export const Cart: React.FC<any> = () => {
   const [searchItems, setSearchItems] = useState<any | null>('');
   let data = useCart();
   let dispatch = useDispatchCart();
-  console.log(data);
 
   if (data?.length === 0) {
     return (<><div className='fs-1 text-center m-5'><br />The Cart is Empty!</div></>)
   }
 
+  let totalPrice = data && data.reduce((total: number, food: any) => total + food.price, 0)
   return (
     <>
       <div className='container'>
@@ -21,7 +21,7 @@ export const Cart: React.FC<any> = () => {
               <th>#</th>
               <th>Name</th>
               <th>Qty.</th>
-              <th>Option</th>
+              <th>Option</th> 
               <th>Amount</th>
               <th></th>
             </tr>
@@ -40,6 +40,10 @@ export const Cart: React.FC<any> = () => {
               )
             })
             }
+            <tr>
+              <td colSpan={4}></td>
+              <td colSpan={2}>{totalPrice}</td>
+            </tr>
           </tbody>
         </Table>
       </div>

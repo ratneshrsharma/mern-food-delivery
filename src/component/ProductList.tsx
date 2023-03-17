@@ -52,7 +52,7 @@ export const ProductList: React.FC<any> = (props) => {
                     </div>
                   );
                 })
-              : "No Food Items"
+              : "No Food Items"     
             }
           </div>
         </>

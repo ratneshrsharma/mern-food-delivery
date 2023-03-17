@@ -16,13 +16,16 @@ button {
   background-color: $white;
   color: $textColor;
 
-  &:hover, &:focus, &:focus-within{
+  &:hover,
+  &:focus,
+  &:focus-within {
     outline: none;
     box-shadow: none;
   }
 }
-select{
-  background-position-x:20px;
+
+select {
+  background-position-x: 20px;
 }
 
 .btn {
@@ -49,6 +52,7 @@ select{
   letter-spacing: 0.06em;
   background-color: $primaryColor;
   text-shadow: none;
+  transition: all 0.5s ease-in-out;
 
   &:active,
   &:hover,
@@ -90,9 +94,24 @@ select{
       color: $white;
     }
   }
+
+  &.btn-accent {
+    background-color: $accentColor;
+    border-color: $accentColor;
+    color: $white;
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, .35);
+    }
+  }
+
   &.btn-link {
     background-color: transparent;
-    border:none;
+    border: none;
     color: $accentColor;
     text-decoration: none;
 

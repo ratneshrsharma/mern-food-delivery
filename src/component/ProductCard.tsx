@@ -18,7 +18,6 @@ export const ProductCard: React.FC<any> = (props) => {
 
   const handleAddToCart = async () => {
     await dispatch({ type: "ADD", id: item._id, name: item.name, qty: qty, size: size, price: finalPrice, img: item.img })
-    console.log("dispatch data", data)
   }
 
   let finalPrice = qty * parseInt(options[size]);
@@ -33,7 +32,7 @@ export const ProductCard: React.FC<any> = (props) => {
       <figure className="figure">
         <img src={item.img} className="figure-img img-fluid" alt={item.name} />
         <figcaption className="figure-caption">
-          <button className='btn btn-primary' onClick={handleAddToCart}>ADD +</button>
+          <button className='btn btn-accent addToCart' onClick={handleAddToCart}>ADD +</button>
         </figcaption>
       </figure>
       <div className="card-body">

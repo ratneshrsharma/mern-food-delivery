@@ -1,9 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
 import { useCart } from '../ContextReducer';
 
 export const Header: React.FC<any> = (props) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   let cartData = useCart();
 
@@ -25,15 +26,15 @@ export const Header: React.FC<any> = (props) => {
               <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav ms-auto">
                   <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                    <Link className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} aria-current="page" to="/">Home</Link>
                   </li>
                   {localStorage.getItem("authToken")
                     ? <>
                       <li className="nav-item">
-                        <Link className="nav-link" aria-current="page" to="/my-orders">My Orders</Link>
+                        <Link className={`nav-link ${location.pathname === '/my-orders' ? 'active' : ''}`} aria-current="page" to="/my-orders">My Orders</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" aria-current="page" to="/my-cart">My Cart <Badge bg='primary' pill>{cartData?.length ? cartData?.length : 0}</Badge></Link>
+                        <Link className={`nav-link ${location.pathname === '/my-cart' ? 'active' : ''}`} aria-current="page" to="/my-cart">My Cart <Badge bg='primary' pill>{cartData?.length ? cartData?.length : 0}</Badge></Link>
                       </li>
                       <li className="nav-item">
                         <span className="nav-link btn btn-danger text-white p-2 px-4 fs-4 mt-1" onClick={handleLogout}>Logout</span>
@@ -41,10 +42,10 @@ export const Header: React.FC<any> = (props) => {
                     </>
                     : <>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/login">Login</Link>
+                        <Link className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`} to="/login">Login</Link>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" to="/signup">Signup</Link>
+                        <Link className={`nav-link ${location.pathname === '/signup' ? 'active' : ''}`} to="/signup">Signup</Link>
                       </li>
                     </>
                   }
